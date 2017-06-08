@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method="post" class="form-signin login-signin" role="form">
+    {% if page_name == 'register_drone' %}
+        <h2 class="form-signin-heading">Please Register Your Drone</h2>
+    {% endif %}
+    <!-- first name -->
+    <input type="text" class="form-control" placeholder="First Name*"  required=""
+            id="first_name_id" name="first_name_name"
+            {% if drone['first_name'] %}value="{{ drone['first_name'] }}"{% endif %}>
+    <input type="text" class="form-control" placeholder="Last Name*" required=""
+            id="last_name_id" name="last_name_name"
+            {% if drone['last_name'] %}value="{{ drone['last_name'] }}"{% endif %}>
+    <input type="email" class="form-control" placeholder="email*" required=""
+            id="email_id" name="email_name"
+            {% if drone['email'] %}value="{{ drone['email'] }}"{% endif %}>
+    <input type="text" class="form-control" placeholder="Serial Number*" required=""
+            id="serial_number_id" name="serial_number_name"
+            {% if drone['serial_number'] %}value="{{ drone['serial_number'] }}"{% endif %}>
+
+
+    {% if drone['manufacturer']  %}
+    <input type="text" class="form-control" placeholder="Manufacturer"
+            id="manufacturer_id" name="manufacturer_name" value="{{ drone['manufacturer'] }}">
+    {% else %}
+    <select class="form-control" id="manufacturer_id" name="manufacturer_name">
+        <option value="">Select Manufacturer</option>
+        <option value="DJI">DJI</option>
+        <option value="Parrot">Parrot</option>
+    </select>
+    {% endif %}
+
+
+    {% if drone['model'] %}
+    <input type="text" class="form-control" placeholder="Model"
+            id="model_id" name="model_name" value="{{ drone['model'] }}">
+    {% else %}
+    <select class="form-control" id="model_id" name="model_name">
+        <option value="">Select Model</option>
+        <option value="Inspire 1">Inspire 1</option>
+        <option value="Parrot AR 2.0">Parrot AR 2.0</option>
+        <option value="Phantom">Phantom</option>
+        <option value="Phantom 2">Phantom 2</option>
+        <option value="S900">S900</option>
+        <option value="S1000">S1000</option>
+    </select>
+    {% endif %}
+
+
+    <input type="text" class="form-control" placeholder="Model Year"
+            id="year_id" name="year_name"
+            {% if drone['year'] %}value="{{ drone['year'] }}"{% endif %}>
+    <input type="text" class="form-control" placeholder="Insurer Name"
+            id="insurer_id" name="insurer_name"
+            {% if drone['insurer'] %}value="{{ drone['insurer'] }}"{% endif %}>
+    <input type="text" class="form-control" placeholder="Policy Number"
+            id="policy_number_id" name="policy_number_name"
+            {% if drone['policy_number'] %}value="{{ drone['policy_number'] }}"{% endif %}>
+
+    {% if drone['property_tag'] %}
+    <input type="text" class="form-control" placeholder="Property Tag"
+            id="property_tag_id" name="property_tag_name"
+            {% if drone['property_tag'] %}value="{{ drone['property_tag'] }}"{% endif %}>
+    {% endif %}
+
+    {% if drone['drone_status'] %}
+    <input type="text" class="form-control" placeholder="Drone Status"
+            id="drone_status_id" name="drone_status_name"
+            {% if drone['drone_status'] %}value="{{ drone['drone_status'] }}"{% endif %}>
+    {% endif %}
+
+    {% if page_name == 'register_drone' %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    {% endif %}
+</form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>
+{% if drone_status == "lost_stolen" %}
+    Thank you for updating the status of your drone.  We will alert the authorities to the status of your drone
+    and notify you when it is found.
+{% endif %}
+
+{% if drone_status == "found" %}
+    Thank you for reporting finding a drone.  We will contact the owner.
+{% endif %}
+
+</h2>
+
+{% endblock %}

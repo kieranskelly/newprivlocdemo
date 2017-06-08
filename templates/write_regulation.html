@@ -1,0 +1,207 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<script>
+    function make_complete_popup(){
+        alert('You have completed your regulations hit submit to save.');
+    }
+
+    function allow_disallow(){
+        var allow_val = $('#allow_id').val();
+        if (allow_val == 'allow'){
+            var regulation = $('#regulation_id');
+            var new_drop = $("<select>" ,{
+                class: "form-control",
+                id: "license_id",
+                name: "license_name",
+                onchange: "license_or_not()"
+            });
+            $('<option>' ,{
+                value: "",
+                text: "Do you wish to require a license"
+            }).appendTo(new_drop);
+            $('<option>' ,{
+                value: "require",
+                text: "Require a license"
+            }).appendTo(new_drop);
+            $('<option>' ,{
+                value: "not_require",
+                text: "Do not require a license"
+            }).appendTo(new_drop);
+            regulation.append(new_drop);
+        }
+        else if (allow_val == 'disallow'){
+            make_complete_popup();
+        }
+    }
+
+    function license_or_not() {
+        var allow_val = $('#license_id').val();
+        var regulation = $('#regulation_id');
+        if (allow_val == 'require') {
+            var regulation = $('#regulation_id');
+            var new_drop = $("<select>", {
+                class: "form-control",
+                id: "license_type_id",
+                name: "license_type_name",
+                onchange: "make_insurance()"
+            });
+            $('<option>', {
+                value: "",
+                text: "Generic license versus Personal/Business license"
+            }).appendTo(new_drop);
+            $('<option>', {
+                value: "generic",
+                text: "Generic license"
+            }).appendTo(new_drop);
+            $('<option>', {
+                value: "specific",
+                text: "Personal/Business license"
+            }).appendTo(new_drop);
+            regulation.append(new_drop);
+        }
+        else if (allow_val == 'not_require') {
+            make_insurance();
+        }
+    }
+
+    function make_insurance() {
+        var regulation = $('#regulation_id');
+        var new_drop = $("<select>", {
+            class: "form-control",
+            id: "insurance_id",
+            name: "insurance_name",
+            onchange: "insurance_or_not()"
+        });
+        $('<option>', {
+            value: "",
+            text: "Do you wish to require insurance"
+        }).appendTo(new_drop);
+        $('<option>', {
+            value: "require",
+            text: "Require insurance"
+        }).appendTo(new_drop);
+        $('<option>', {
+            value: "not_require",
+            text: "Do not require insurance"
+        }).appendTo(new_drop);
+        regulation.append(new_drop);
+    }
+
+    function insurance_or_not(){
+        var regulation = $('#regulation_id');
+            var new_drop = $("<select>" ,{
+                class: "form-control",
+                id: "everywhere_id",
+                name: "everywhere_name",
+                onchange: "white_or_black()"
+            });
+            $('<option>' ,{
+                value: "",
+                text: "Drones are allowed everywhere or specific zones"
+            }).appendTo(new_drop);
+            $('<option>' ,{
+                value: "everywhere",
+                text: "Allowed everywhere"
+            }).appendTo(new_drop);
+            $('<option>' ,{
+                value: "zones",
+                text: "Specific zones"
+            }).appendTo(new_drop);
+            regulation.append(new_drop);
+    }
+
+
+    function white_or_black(){
+        var regulation = $('#regulation_id');
+        var allow_val = $('#everywhere_id').val();
+        if (allow_val == "everywhere"){
+            make_complete_popup();
+        }
+        else if (allow_val == "zones") {
+            var new_drop = $("<select>", {
+                class: "form-control",
+                id: "white_black_id",
+                name: "white_black_name",
+                onchange: "make_complete_popup()"
+            });
+            $('<option>', {
+                value: "",
+                text: "Do you wish to create white lists or black lists"
+            }).appendTo(new_drop);
+            $('<option>', {
+                value: "white",
+                text: "White list"
+            }).appendTo(new_drop);
+            $('<option>', {
+                value: "black",
+                text: "Black List"
+            }).appendTo(new_drop);
+            regulation.append(new_drop);
+        }
+    }
+
+    function clear_lists(){
+        var regulations = $('#regulation_id').children();
+        for (var i=1; i<regulations.length; i++){
+            regulations[i].remove();
+        }
+               var regulation = $('#regulation_id');
+        var allow_val = $('#everywhere_id').val();
+        if (allow_val == "everywhere"){
+        }
+        var new_drop = $("<select>", {
+            class: "form-control",
+            id: "allow_id",
+            name: "allow_name",
+            onchange: "allow_disallow()"
+        });
+        $('<option>', {
+            value: "",
+            text: "Allow or disallow drone use?"
+        }).appendTo(new_drop);
+        $('<option>', {
+            value: "allow",
+            text: "Allow use of drones"
+        }).appendTo(new_drop);
+        $('<option>', {
+            value: "disallow",
+            text: "Do not allow use of drones"
+        }).appendTo(new_drop);
+        regulation.append(new_drop);
+    }
+</script>
+
+<div class="container-fluid">
+    <form method="post">
+
+        <div class="form-group">
+            <label for="cityNameInput">City Name</label>
+            <input type="text" class="form-control" id="cityNameInput" name="cityNameInput" required="">
+        </div>
+
+        <div class="form-group">
+            <label for="zipCodeInput">Zip Code</label>
+            <input type="text" class="form-control" id="zipCodeInput" name="zipCodeInput" required="">
+        </div>
+
+         <div class="form-group" id="regulation_id">
+            <label>Regulation</label>
+            <select class="form-control" id="allow_id" name="allow_name" onchange="allow_disallow()">
+                <option value="">Allow or disallow drone use?</option>
+                <option value="allow">Allow use of drones</option>
+                <option value="disallow">Do not allow use of drones</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="button" class="btn btn-default" onclick="clear_lists()">Clear</button>
+
+    </form>
+
+</div>
+
+
+
+
+
+{%endblock%}

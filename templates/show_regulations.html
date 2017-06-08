@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="container-fluid">
+    {% for regulation in regulations %}
+        <div class="row">
+            <h2><b>City:</b> {{regulation.city}}</h2>
+        </div>
+
+        <div class="row">
+            <h2><b>Zip Code:</b> {{regulation.zip_code}}</h2>
+        </div>
+
+        <div class="row">
+            <h2><b>Regulations:</b></h2>
+        </div>
+
+        <div class="row">
+            <p style="white-space: pre-wrap">{{regulation.regulation}}</p>
+        </div>
+
+
+    {% endfor %}
+
+
+</div>
+
+
+
+
+
+{%endblock%}

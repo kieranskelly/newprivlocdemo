@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- my css and js -->
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+
+    <title>Privacy Locations</title>
+
+
+</head>
+<body>
+<div class="container">
+    <!-- static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">AerWaze</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+      <ul class="nav navbar-nav">
+        {% if user != "guest" %}
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Locations<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/manage_locations">Manage Locations</a></li>
+                <li><a href="/add_location">Add Location</a></li>
+                <li><a href="/landing_zone">Landing Zone</a></li>
+              </ul>
+            </li>
+          </ul>
+        {% else %}
+            <li {% if page_name == 'login_page' %} class="active" {% endif %} >
+                <a href="/login">Log In</a></li>
+            <li {% if page_name == 'signup_page' %} class="active" {% endif %} >
+                <a href="/signup">Signup</a></li>
+        {% endif %}
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search Locations<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/within_location_with_map">Within Location</a></li>
+            <li><a href="/radius_with_map">Nearby Locations</a></li>
+            <li><a href="/within_landing_zone">Active Landing Zones</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Drones<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/register_drone">Register</a></li>
+            <li><a href="/drone_status">Drone Status</a></li>
+            <li><a href="https://www.faa.gov/uas/">Federal Regulations</a> </li>
+            <li><a href="/get_regulation">Regulations</a></li>
+            <li><a href="/write_regulation">Create Regulations</a></li>
+          </ul>
+        </li>
+      </ul>
+
+        {% if user!= "guest" %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">{{user}}(logout)</a></li>
+            </ul>
+        {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

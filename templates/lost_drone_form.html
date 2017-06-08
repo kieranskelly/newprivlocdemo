@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method="post" class="form-signin login-signin" role="form">
+    <h2 class="form-signin-heading">Update Drone Status</h2>
+
+    <select class="form-control" id="drone_status_id" name="drone_status_name">
+        <option value="Select Drone Status">Select Drone Status</option>
+        <option value="Lost">Lost</option>
+        <option value="Stolen">Stolen</option>
+        <option value="Found">Found</option>
+        <option value="Check Status">Check Status</option>
+        <option value="Law Enforcement">Law Enforcement</option>
+    </select>
+
+    <input type="text" class="form-control" placeholder="Property Tag"
+            id="property_tag_id" name="property_tag_name">
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Check/Update Status</button>
+</form>
+
+{% endblock %}

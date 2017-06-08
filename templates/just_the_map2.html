@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASBZjekNgPNptbrw-KJCP9syPYVe8EtL0&callback=initMap"type="text/javascript"></script>
+    <link href="/static/css/generic_google_map.css" rel="stylesheet">
+
+    <title></title>
+</head>
+<body>
+
+<script>
+var map;
+var myMarkers = [];
+var currentPolyLines = [];
+var polygonClosed = false;
+var max_lat = {{location['max_latitude']}};
+var min_lat = {{location['min_latitude']}};
+var max_long = {{location['max_longitude']}};
+var min_long = {{location['min_longitude']}};
+var points = {{location['points']}};
+
+function initialize_add_location_map() {
+    map = new google.maps.Map(document.getElementById('map-container'), {
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            tilt: 0
+        });
+
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(max_lat, min_long),
+        new google.maps.LatLng(min_lat, max_long));
+    map.fitBounds(defaultBounds);
+}
+
+//add to the existing map the points of the location
+function edit_location_map() {
+    initialize_add_location_map();
+    convert_points_to_markers();
+}
+
+function convert_points_to_markers() {
+    for (var i = 0; i < points.length-1; i++) {
+        var location = { lat: points[i][0], lng: points[i][1] }
+        placeMarker(location);
+    }
+    closePolygon();
+}
+
+//places the newest marker and polyline to the map
+function placeMarker(location) {
+    addMarker(location);
+    myMarkers[myMarkers.length - 1].setMap(map);
+    if (myMarkers.length > 1) {
+        addPolyLine(myMarkers[myMarkers.length - 2], myMarkers[myMarkers.length - 1]);
+        placeLastPolyLine()
+    }
+}
+
+//handle adding and removing markers for the myMarkers array
+//adds new marker to map and appends the markers array
+function addMarker(location) {
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        visible: false
+    });
+    myMarkers.push(marker);
+}
+
+function addPolyLine(markerOne, markerTwo) {
+    var markerLocations = [];
+    var pointOne = new google.maps.LatLng(markerOne.position.lat(), markerOne.position.lng());
+    markerLocations.push(pointOne);
+    var pointTwo = new google.maps.LatLng(markerTwo.position.lat(), markerTwo.position.lng());
+    markerLocations.push(pointTwo);
+    var currentPoly = new google.maps.Polyline({
+        path: markerLocations,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+    currentPolyLines.push(currentPoly);
+}
+
+function closePolygon() {
+    if (polygonClosed == false && myMarkers.length > 2) {
+        myMarkers.push(myMarkers[0]);
+        addPolyLine(myMarkers[myMarkers.length - 2], myMarkers[myMarkers.length - 1]);
+        polygonClosed = true;
+        placeLastPolyLine();
+    }
+}
+
+//sets the newest polyline to the map
+function placeLastPolyLine() {
+    currentPolyLines[currentPolyLines.length - 1].setMap(map);
+}
+
+
+google.maps.event.addDomListener(window, 'load', edit_location_map);
+
+</script>
+
+            <div id="map-container" class="col-md-8"></div>
+
+</body>
+</html>

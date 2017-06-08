@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="container-fluid">
+    <form method="post">
+
+        <div class="form-group">
+            <label for="cityNameInput">City Name</label>
+            <input type="text" class="form-control" id="cityNameInput" name="cityNameInput" required="">
+        </div>
+
+        <div class="form-group">
+            <label for="zipCodeInput">Zip Code</label>
+            <input type="text" class="form-control" id="zipCodeInput" name="zipCodeInput" required="">
+        </div>
+
+         <div class="form-group">
+            <label for="regulationInput">Regulation</label>
+            <textarea class="form-control" rows="25" id="regulationInput"
+                      name="regulationInput" required=""></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+
+    </form>
+
+</div>
+
+
+
+
+
+{%endblock%}

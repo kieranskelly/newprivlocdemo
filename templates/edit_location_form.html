@@ -1,0 +1,127 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASBZjekNgPNptbrw-KJCP9syPYVe8EtL0&callback=initMap"type="text/javascript"></script>
+<script src="/static/js/add_location.js" type="text/javascript"></script>
+<script src="/static/js/generic_google_map.js" type="text/javascript"></script>
+<script src="/static/js/polygon_handling.js" type="text/javascript"></script>
+<script src="/static/js/edit_location.js" type="text/javascript"></script>
+<link href="/static/css/generic_google_map.css" rel="stylesheet">
+
+<script>
+    var max_lat = {{location['max_latitude']}};
+    var min_lat = {{location['min_latitude']}};
+    var max_long = {{location['max_longitude']}};
+    var min_long = {{location['min_longitude']}};
+    var points = {{location['points']}};
+    {% if location['triangles'] %}
+        var triangles = {{location['triangles']}};
+    {% endif %}
+
+    google.maps.event.addDomListener(window, 'load', edit_location_map);
+</script>
+
+<form class="form-inline text-center" role="form">
+    <div class="col-md-4"></div>
+    <div class="form-group col-md-8">
+        <button type="button" class="btn btn-sm btn-success small_text_btn"
+                onclick="editLocation();">Save Location</button>
+        <button type="button" class="btn btn-sm btn-primary small_text_btn"
+                onclick="closePolygon();">Close Polygon</button>
+        <button type="button" class="btn btn-sm btn-primary small_text_btn"
+                id="show_hide_markers_id"
+                value="Hide Markers"
+                onclick="changeShowHideMarkersButton();"
+                >Hide Markers</button>
+        <button type="button" class="btn btn-sm btn-primary small_text_btn"
+                id="show_hide_polygons_id"
+                value="Hide Polygons"
+                onclick="changeShowHidePolygonsButton();">Hide Polygons</button>
+        <button type="button" class="btn btn-sm btn-danger small_text_btn"
+                onclick="resetAllVariables();">Clear Markers</button>
+        <button type="button" class="btn btn-sm btn-danger small_text_btn"
+                onclick="removeLastVariable();">Remove Last Marker</button>
+        <button type="button" class="btn btn-sm btn-danger small_text_btn"
+                onclick="deleteLocation();">Delete Location</button>
+    </div>
+</form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        Site name
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="sight_name_location_id"
+                               name="sight_name_location_name"
+                               value="{{location['descriptive_name']}}"
+                               style="width:100%">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Zip Code
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="zip_code_id"
+                               name="zip_code_name"
+                               value="{{location['zip_code']}}"
+                               style="width:100%">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Validated
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" value="{{location['validated']}}" readonly="true"
+                                id="active_dropdown_id"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Camera Active
+                    </div>
+                    <div class="col-md-9">
+                        <select name="camera_dropdown_name" id="camera_dropdown_id">
+                            <option value="True" {% if location['camera'] %}
+                                    selected="selected" {% endif %}>True</option>
+                            <option value="False" {% if not location['camera'] %}
+                                    selected="selected" {% endif %}>False</option>
+                         </select>
+                    </div>
+                </div>
+                <p>Camera Text</p>
+                <textarea rows="4" id="camera_text_area_id" style="width: 100%">{{location['camera_text']}}</textarea>
+                <div class="row">
+                    <div class="col-md-3">
+                        Video Active
+                    </div>
+                    <div class="col-md-9">
+                        <select name="video_dropdown_name" id="video_dropdown_id">
+                            <option value="True" {% if location['video'] %}
+                                    selected="selected" {% endif %}>True</option>
+                            <option value="False" {% if not location['video'] %}
+                                    selected="selected" {% endif %}>False</option>
+                        </select>
+                    </div>
+                </div>
+                <p>Video Text</p>
+                <textarea rows="4" id="video_text_area_id" style="width: 100%">{{location['video_text']}}</textarea>
+
+
+
+            </div>
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="map-container" class="col-md-8"></div>
+        </div>
+
+
+
+
+    </div>
+
+
+{%endblock%}

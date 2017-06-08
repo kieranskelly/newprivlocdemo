@@ -1,0 +1,13 @@
+.login-signin {
+    max-width: 330px;
+}
+
+#pac-input {
+    background-color: #fff;
+    padding: 0 11px 0 13px;
+    width: 400px;
+    height: 32px;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}

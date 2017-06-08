@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div class="page-header"><h2>Manage Locations</h2></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tbody>
+                    {% for location in locations %}
+                        <tr>
+                        <td><a class="btn btn-default" type="button" href="/edit_location/{{location}}">edit</a></td>
+                        <td>{{locations[location]['descriptive_name']}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

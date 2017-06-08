@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method="post" class="form-signin login-signin" role="form">
+    <h2 class="form-signin-heading">Drone Status</h2>
+
+
+    <input type="text" class="form-control" placeholder="Property Tag"
+            id="property_tag_id" name="property_tag_name" value="{{drone['property_tag']}}">
+    <input type="text" class="form-control" placeholder="Property Tag"
+            id="drone_status_id" name="drone_status_name" value="{{drone['drone_status']}}">
+
+
+</form>
+
+{% endblock %}
