@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+    <div class="container-fluid">
+        <form method="get">
+            <div class="row input-group" id="flying_status_div" style="display: '';">
+                <button type="submit" class="btn btn-primary btn-large" onchange="eventFlyingYes()">I am flying</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<script>
+    function eventFlyingYes(){
+    $('#flying_status_div').css('display', 'none');
+    }
+</script>
+
+{%endblock%}

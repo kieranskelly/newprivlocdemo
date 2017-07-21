@@ -77,7 +77,18 @@
             <li><a href="/write_regulation">Create Regulations</a></li>
           </ul>
         </li>
-      </ul>
+
+
+        <li class="=dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Permit<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/permit_create">Create Permit</a></li>
+                <li><a href="/permit_apply">Apply for Permit</a></li>
+                <li><a href="/permit_review">Review Permits</a></li>
+            </ul>
+        </li>
+
+        </ul>
 
         {% if user!= "guest" %}
             <ul class="nav navbar-nav navbar-right">

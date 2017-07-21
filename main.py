@@ -29,11 +29,14 @@ from handlers.landing_zone_handler import LandingZoneHandler
 from handlers.landing_zone_handler import LandingZoneEditHandler
 from handlers.landing_zone_handler import WithinLandingZoneHandler
 import handlers.regulation_handler as regs
-from handlers.permit_creator import CreatePermit
+from handlers.permit_handler import PermitCreater
+from handlers.permit_handler import PermitApplier
+from handlers.permit_handler import PermitReviewer
+from handlers.permit_handler import PermitApplication
+from handlers.fly_handler import PreFlight
 
 from register_drone.register_drone_handler import RegisterDroneHandler
 from register_drone.register_drone_handler import LostDrone
-
 
 
 
@@ -59,5 +62,11 @@ app = webapp2.WSGIApplication([('/', LandingPageHandler),
                                ('/register_drone', RegisterDroneHandler),
                                ('/drone_status', LostDrone),
                                ('/locations_by_zip', ls.LocationsWithinZipCode),
-                               ('/create_permit', CreatePermit),
+                               ('/permit_create', PermitCreater),
+                               ('/permit_apply', PermitApplier),
+                               ('/permit_apply/[\w]', PermitApplication),
+                               ('/permit_apply/atherton', PermitApplication),
+                               ('/permit_review', PermitReviewer),
+                               ('/preflight', PreFlight)
+
 ], debug=True)
