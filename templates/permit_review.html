@@ -1,0 +1,87 @@
+{% extends "base.html" %} 
+{% block content %}
+<script>
+    var xhttp = new XMLHttpRequest();
+    function approve(permit_id) {
+        var p=document.getElementById(permit_id);
+        var x=document.getElementById("status_"+permit_id);
+        x.innerHTML="Approved";
+        xhttp.open("POST", "permit_review", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("permit_id="+p.id+"&decision=Approved");
+
+    }
+    function reject(permit_id) {
+        var p=document.getElementById(permit_id);
+        var statusID=document.getElementById("status_"+permit_id);
+        statusID.innerHTML="Rejected";
+        xhttp.open("POST", "permit_review", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("permit_id="+p.id+"&decision=Rejected");
+    }
+    function more_info(obj) {
+        //$(document).ready(function() {
+        //    $("mo
+        $("#myModal").modal()
+    }
+</script>
+
+<div class="page-header"><h2>Review Permits</h2></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>City</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for permit in permitz %}
+                        <tr>
+                        <td>{{permitz[permit].name}}</td>
+                        <!--<td>{{permitz[permit].time}}</td>-->
+                        <td>{{permitz[permit].city}}</td>
+                        <td id="status_{{permitz[permit].id}}">{{permitz[permit].status}}</td>
+                        <td id="{{permitz[permit].id}}"></td>
+                        <td><button class="btn btn-success" type="button" name="approve" onclick="approve({{permitz[permit].id}})">Approve</button></td>
+                        <td><button class="btn btn-danger" type="button" name="reject" onclick="reject({{permitz[permit].id}})">Reject</button></td>
+                        <td><button class="btn btn-info" type="button" name="more_info" value="{{permitz[permit]}}" onclick="more_info( this )">More info</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Permit Form</h4>
+      </div>
+      <div class="modal-body">
+        <p>User: {{permit_focus_user}}</p>
+        <p>Permit Type: UAV flight </p>
+        <p>Event location: {{permit_focus_location}}</p>
+        <p>Status: {{permit_focus_status}}</p>
+        <p>UAV Model: {{permit_focus_uav_model}}</p>
+        <p>UAV Make: {{permit_focus_uav_make}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{%endblock%}

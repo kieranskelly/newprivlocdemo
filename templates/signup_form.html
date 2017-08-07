@@ -26,20 +26,56 @@
 {% elif email %}
     {% set email_text_placeholder = email %}
 {% else %}
-    {% set email_text_placeholder = "Email address" %}
+    {% set email_text_placeholder = "Email Address" %}
 {% endif %}
 
+{% if error_phone_number %}
+    {% set phone_number_text_placeholder = error_phone_number %}
+{% else %}
+    {% set phone_number_text_placeholder = "Phone Number" %}
+{% endif %}
+
+<div class="container-fluid">
 <form method="post" class="form-signin login-signin" role="form">
     <h2 class="form-signin-heading">Create user</h2>
-    <input type="text" class="form-control" placeholder="{{user_text_placeholder}}" required="" autofocus=""
-            id="user_name_signup_id" name="user_name_signup_name">
+
+
+    <input type="email" class="form-control" placeholder="{{email_text_placeholder}}" required="" autofocus=""
+            id="email_signup_id" name="email_signup_name">
     <input type="password" class="form-control" placeholder="{{password_text_placeholder}}" required=""
             id="password_signup_id" name="password_signup_name">
     <input type="password" class="form-control" placeholder="{{verify_text_placeholder}}" required=""
             id="password_match_signup_id" name="password_match_signup_name">
-    <input type="email" class="form-control" placeholder="{{email_text_placeholder}}" required=""
-            id="email_signup_id" name="email_signup_name">
+    <input class="form-control" placeholder="{{phone_number_text_placeholder}}" required=""
+            id="phone_number_signup_id" name="phone_number_signup_name">
+
+    <!--<input type="radio" onclick="showText(this)" value="Show"> City
+        <select name="roles_select" id="roles_select" multiple style="display: none">
+            <option value="creator">Creation</option>
+            <option value="approver">Approval</option>
+            <option value="saftey">Saftey</option>
+        </select>-->
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
+</div>
+
+<script>
+    function showText(obj)
+    {
+    if(obj.value=='Show')
+        {
+        document.getElementById('roles_select').style.display='block';
+        obj.value='Hide';
+        }
+    else
+        {
+        document.getElementById('roles_select').style.display='none';
+        obj.value='Show';
+        }
+    }
+</script>
+
+
 
 {% endblock %}

@@ -37,6 +37,18 @@ class ValidInputs:
         return email and email_re.match(email)
 
     @staticmethod
+    def valid_phone_number(phone_number):
+        if len(phone_number) != 10:
+            return False
+        for i in range(10):
+            # if i in [3,7]:
+            #     if phone_number[i] != '-':
+            #         return False
+            if not phone_number[i].isalnum():
+                return False
+        return True
+
+    @staticmethod
     def check_user_lat_long_inputs(current_form):
         """
         Checks to see if latitude and longitude are within valid region.

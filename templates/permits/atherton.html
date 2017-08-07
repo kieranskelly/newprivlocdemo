@@ -7,45 +7,107 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" rel="stylesheet">
 
-    <p>
-        <b>This is the city of atherton's permit application.</b>
-    </p>
+<script>
+    function submitForms() {
+        <!--document.getElementById("signup_form").submit();-->
+        document.getElementById("application_form").submit();
+    }
+</script>
+{% if not phone_number_placeholder %}
+    {% set phone_number_placeholder = "Phone Number" %}
+{% endif %}
 
+{% if error_email %}
+    {% set email_text_placeholder = error_email %}
+{% elif email %}
+    {% set email_text_placeholder = email %}
+{% else %}
+    {% set email_text_placeholder = "Email Address" %}
+{% endif %}
+
+{% if error_password %}
+    {% set password_text_placeholder = error_password %}
+{% else %}
+    {% set password_text_placeholder = "Password" %}
+{% endif %}
+
+{% if error_verify %}
+    {% set verify_text_placeholder = error_verify %}
+{% else %}
+    {% set verify_text_placeholder = "Password Confirm" %}
+{% endif %}
 
     <div class="container-fluid">
-        <form method="post">
-            <div class="row input-group" id="operator_name_div">
-                <span class="input-group-addon">Operator Name</span>
-                <input type="text" class="form-control form-group" id="operator_name_textbox">
+         <form method="post" id="application_form" class="form-signin login-signin" role="form">
+             <h3>{{ city }} Permit</h3>
+             <input type="hidden" name="city" value="{{city}}">
+             <input type="hidden" name="permit_id" value="{{permit_id}}">
+            <!--{% if user == "guest" %}-->
+            <!--<form method="post" action="/signup_handler" id="signup_form">-->
+            <!--<div class="row input-group" id="operator_name_div">-->
+                <!--<span class="input-group-addon" >Name</span>-->
+                <!--<input type="text" class="form-control form-group" id="operator_name_textbox" name="user_name_signup_name">-->
+            <!--</div>-->
+             <!--<div class="row input-group" id="operator_email_div">-->
+                <!--<span class="input-group-addon">Email</span>-->
+             <input type="email" class="form-control" placeholder="{{email_text_placeholder}}" required="" autofocus=""
+                    id="operator_email_textbox" name="email_name">
+            <!--</div>-->
+            <!--<div class="row input-group" id="password_div">-->
+                <!--<span class="input-group-addon" >Create password</span>-->
+             <input type="password" class="form-control" placeholder="{{password_text_placeholder}}" required=""
+                        id="password_signup_id" name="password_name">
+            <!--</div>-->
+            <!--<div class="row input-group" id="password_retype_div">-->
+                <!--<span class="input-group-addon" >Verify password</span>-->
+             <!--<input type="password" class="form-control" placeholder="{{verify_text_placeholder}}" required=""-->
+                    <!--id="password_match_signup_id" name="password_match_name">-->
+            <!--</div>-->
+            <!--</form>-->
+            <!--{% endif %}-->
+            <!--<div class="row input-group" id="phone_number_div">-->
+                <!--<span class="input-group-addon">Phone number</span>-->
+             <input type="text" class="input-medium bfh-phone form-control" value="{{phone_number_placeholder}}"
+                    data-format="+1 (ddd) ddd-dddd" required="" id="phone_number_textbox" name="phone_number">
+            <!--</div>-->
+
+            <!--<div class="row input-group" id="uav_make_div">-->
+                <!--<span class="input-group-addon">UAV Make</span>-->
+             <input type="text" class="form-control" placeholder="UAV Model" required=""
+                    id="uav_make_textbox" name="uav_make">
+            <!--</div>-->
+            <!--<div class="row input-group" id="uav_model_div">-->
+                <!--<span class="input-group-addon">UAV Model</span>-->
+             <input type="text" class="form-control" placeholder="UAV Make" required=""
+                    id="uav_model_textbox" name="uav_model">
+            <!--</div>-->
+             <!--<div class="row input-group" id="flight_description_div">-->
+                <!--<span class="input-group-addon">-->
+                    <!--Description of proposed flight activity:-->
+                <!--</span>-->
+             <input type="text" class="form-control" placeholder="Description of activities" required=""
+                    id="flight_description_textbox" name="description"/>
+            <!--</div>-->
+            <!--<div class="row input-group date" id="event_date_id">-->
+                <!--<span class="input-group-addon">When will the flight occur:</span>-->
+             <!--<input type="text" class="form-control form-group" name="flight_date"/>-->
+                <!--<span class="input-group-addon">-->
+                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                <!--</span>-->
+             <div class="input-group date form-control" id='event_start_time_id'>
+                 <label for="flight_date_id" >Date</label>
+                <input id="flight_date_id" type="date" class="form-control form-group" required="" name="flight_date"/>
+                <!--<span class="input-group-addon">-->
+                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                <!--</span>-->
             </div>
-            <div class="row input-group" id="operator_email_div">
-                <span class="input-group-addon">Email</span>
-                <input type="text" class="form-control form-group" id="operator_email_textbox">
-            </div>
-            <div class="row input-group" id="uav_make_div">
-                <span class="input-group-addon">UAV Make</span>
-                <input type="text" class="form-control form-group" id="uav_make_textbox">
-            </div>
-            <div class="row input-group" id="uav_model_div">
-                <span class="input-group-addon">UAV Model</span>
-                <input type="text" class="form-control form-group" id="uav_model_textbox">
-            </div>
-            <div class="row input-group date" id="event_date_id">
-                <span class="input-group-addon">When will the flight occur:</span>
-                <input type="text" class="form-control form-group"/>
-                <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-            </div>
-            <div class="row input-group" id="flight_description_div">
-                <span class="input-group-addon">
-                    Description of proposed flight activity:
-                </span>
-                <input type="text" class="form-control form-group" id="flight_description_textbox"/>
-            </div>
-            <div class="row input-group">
-                <input type="submit" class="btn-success">
-            </div>
+            <!--</div>-->
+
+            <!--<div class="row input-group">-->
+                <!--<input type="submit" class="btn-success" onclick="submitForms()">-->
+             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+            <!--</div>-->
         </form>
     </div>
 

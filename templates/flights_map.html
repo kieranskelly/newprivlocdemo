@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<html>
+  <head>
+    <style>
+       #map {
+        height: 500px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Flights Review Map</h3>
+    <div id="map"></div>
+    <script>
+
+        function initMap() {
+            var uluru = {lat: -25.363, lng: 131.044};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 11,
+              center: {lat: 37.463418, lng: -122.191621}
+            });
+            var marker0 = new google.maps.Marker({
+              position: {lat: 37.463418, lng: -122.191621},
+              label: "C",
+              map: map
+            });
+            var marker1 = new google.maps.Marker({
+              position: {lat: 37.427214, lng: -122.093704},
+              label: "R",
+              map: map
+            });
+            var marker2 = new google.maps.Marker({
+              position: {lat: 37.007065, lng: -121.905684},
+              label: "H",
+              map: map
+            });
+            var marker3 = new google.maps.Marker({
+              position: {lat: 37.497948, lng:-122.151427},
+              label: "O",
+              map: map
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: "Some info about the user flight."
+            });
+
+            marker0.addListener('click', function() {
+                infowindow.open(map,marker0);
+            });
+            marker1.addListener('click', function() {
+                infowindow.open(map,marker1);
+            });
+            marker2.addListener('click', function() {
+                infowindow.open(map,marker2);
+            });
+            marker3.addListener('click', function() {
+                infowindow.open(map,marker3);
+            });
+
+
+            //for(var i=0; i<3; i++) {
+            //    console.log(marker[i])
+            //    marker[i].addListener('click', function() {
+            //        infowindow.open(map, marker[i]);
+            //    });
+            //}
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDugA_W5BAGJIxp6BKpCCCwmBjHribk-YI&callback=initMap">
+    </script>
+  </body>
+</html>
+
+
+{%endblock%}

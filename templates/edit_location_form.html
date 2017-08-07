@@ -48,68 +48,68 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-3">
-                        Site name
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="sight_name_location_id"
-                               name="sight_name_location_name"
-                               value="{{location['descriptive_name']}}"
-                               style="width:100%">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        Zip Code
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="zip_code_id"
-                               name="zip_code_name"
-                               value="{{location['zip_code']}}"
-                               style="width:100%">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        Validated
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" value="{{location['validated']}}" readonly="true"
-                                id="active_dropdown_id"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        Camera Active
-                    </div>
-                    <div class="col-md-9">
-                        <select name="camera_dropdown_name" id="camera_dropdown_id">
-                            <option value="True" {% if location['camera'] %}
-                                    selected="selected" {% endif %}>True</option>
-                            <option value="False" {% if not location['camera'] %}
-                                    selected="selected" {% endif %}>False</option>
-                         </select>
-                    </div>
-                </div>
-                <p>Camera Text</p>
-                <textarea rows="4" id="camera_text_area_id" style="width: 100%">{{location['camera_text']}}</textarea>
-                <div class="row">
-                    <div class="col-md-3">
-                        Video Active
-                    </div>
-                    <div class="col-md-9">
-                        <select name="video_dropdown_name" id="video_dropdown_id">
-                            <option value="True" {% if location['video'] %}
-                                    selected="selected" {% endif %}>True</option>
-                            <option value="False" {% if not location['video'] %}
-                                    selected="selected" {% endif %}>False</option>
-                        </select>
-                    </div>
-                </div>
-                <p>Video Text</p>
-                <textarea rows="4" id="video_text_area_id" style="width: 100%">{{location['video_text']}}</textarea>
-
+                <!--<div class="row">-->
+                    <!--<div class="col-md-3">-->
+                        <!--Site name-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<input type="text" id="sight_name_location_id"-->
+                               <!--name="sight_name_location_name"-->
+                               <!--value="{{location['descriptive_name']}}"-->
+                               <!--style="width:100%">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-3">-->
+                        <!--Zip Code-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<input type="text" id="zip_code_id"-->
+                               <!--name="zip_code_name"-->
+                               <!--value="{{location['zip_code']}}"-->
+                               <!--style="width:100%">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-3">-->
+                        <!--Validated-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<input type="text" value="{{location['validated']}}" readonly="true"-->
+                                <!--id="active_dropdown_id"/>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-3">-->
+                        <!--Camera Active-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<select name="camera_dropdown_name" id="camera_dropdown_id">-->
+                            <!--<option value="True" {% if location['camera'] %}-->
+                                    <!--selected="selected" {% endif %}>True</option>-->
+                            <!--<option value="False" {% if not location['camera'] %}-->
+                                    <!--selected="selected" {% endif %}>False</option>-->
+                         <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<p>Camera Text</p>-->
+                <!--<textarea rows="4" id="camera_text_area_id" style="width: 100%">{{location['camera_text']}}</textarea>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-3">-->
+                        <!--Video Active-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<select name="video_dropdown_name" id="video_dropdown_id">-->
+                            <!--<option value="True" {% if location['video'] %}-->
+                                    <!--selected="selected" {% endif %}>True</option>-->
+                            <!--<option value="False" {% if not location['video'] %}-->
+                                    <!--selected="selected" {% endif %}>False</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<p>Video Text</p>-->
+                <!--<textarea rows="4" id="video_text_area_id" style="width: 100%">{{location['video_text']}}</textarea>-->
+        
 
 
             </div>

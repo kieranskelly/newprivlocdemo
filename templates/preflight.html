@@ -3,19 +3,83 @@
 
 <body>
     <div class="container-fluid">
-        <form method="get">
-            <div class="row input-group" id="flying_status_div" style="display: '';">
-                <button type="submit" class="btn btn-primary btn-large" onchange="eventFlyingYes()">I am flying</button>
-            </div>
-        </form>
+
+        <div>
+        <button onclick="getLocation()" class="btn btn-primary btn-large btn-block">I am flying</button>
+        </div>
+        <br>
+        <div>
+        <button onclick="stopLocation()" class="btn btn-primary btn-large btn-danger btn-block">I have landed</button>
+        </div>
+        <!--<div>-->
+        <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="eventRadio" id="eventRadioYes" onchange="eventRadioClickYes()">Developer mode-->
+        <!--</label>-->
+        <!--</div>-->
+        <br>
+
+        <div class="row" id="developer_div" style="display:none;">
+            <span class="input-group-addon">Lat</span>
+            <input type="text" class="form-control form-group" id="lat_dev_textbox">
+
+            <span class="input-group-addon">Lon</span>
+            <input type="text" class="form-control form-group" id="lon_dev_textbox">
+        </div>
+
+        <p id="loc"> </p>
     </div>
 
 </body>
 
 <script>
-    function eventFlyingYes(){
-    $('#flying_status_div').css('display', 'none');
+var x = document.getElementById("loc");
+var devbutton = document.getElementById("devbutton");
+var xhttp = new XMLHttpRequest();
+var watchID;
+var geoLoc;
+
+function eventRadioClickYes() {
+    $('#developer_div').css('display', '');
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+       geoLoc = navigator.geolocation;
+       watchID = geoLoc.watchPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
     }
+}
+
+function stopLocation() {
+    geoLoc.clearWatch(watchID);
+    x.innerHTML = "";
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    xhttp.open("POST", "preflight", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("lat="+position.coords.latitude+"&lon="+position.coords.longitude);
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
 </script>
 
 {%endblock%}

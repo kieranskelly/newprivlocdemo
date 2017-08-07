@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASBZjekNgPNptbrw-KJCP9syPYVe8EtL0&v=3.exp&libraries=places"></script>
+<script src="/static/js/add_location.js" type="text/javascript"></script>
+<script src="/static/js/generic_google_map.js" type="text/javascript"></script>
+<script src="/static/js/polygon_handling.js" type="text/javascript"></script>
+<link href="/static/css/generic_google_map.css" rel="stylesheet">
+
+<script>
+    var xhttp = new XMLHttpRequest();
+    function post_alert(flight) {
+        var x = flight.id.split("phone_number")[1].split(",")[0];
+        xhttp.open("POST", "flight_review", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("alert=true&phone_number="+x+"");
+    }
+    function more_info(obj) {
+        //$(document).ready(function() {
+        //    $("mo
+        $("#myModal").modal()
+    }
+
+</script>
+
+<div class="page-header"><h2>Review Flights</h2></div>
+
+<!--<div class="container-fluid">-->
+    <!--<div class="row">-->
+        <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
+        <!--<div id="map-container" class="col-md-12"></div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <a href="/flight_review/map">Map</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Lat</th>
+                    <th>Lon</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for flight in flights %}
+                        <tr id="flight_{{flights[flight].id}}">
+                        <td>{{flights[flight].name}}</td>
+                        <td>{{flights[flight].time}}</td>
+                        <td>{{flights[flight].lat}}</td>
+                        <td>{{flights[flight].lon}}</td>
+                        <td><button type="button" class="btn btn-info" onclick="more_info(this)">More info</button></td>
+                        <td><button type="button" id="{{flights[flight]}}" class="btn btn-danger" onclick="post_alert(this)">Alert</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Flight Focus</h4>
+      </div>
+      <div class="modal-body">
+        <p>User: </p>
+        <p>Event location: </p>
+        <p>Date: </p>
+        <p>Permit Approval:</p>
+        <p>... </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+{%endblock%}

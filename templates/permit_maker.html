@@ -11,134 +11,145 @@
     <form method="post">
 
         <!-- Start area for entering either a Permit number or a Sponsors name -->
-        <div>
-            Has a permit been issued for this event?
-            <label class="radio-inline">
-                <input type="radio" name="eventRadio" id="eventRadioYes" onchange="eventRadioClickYes()">Yes
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="eventRadio" id="eventRadioNo"  onchange="eventRadioClickNo()">No
-            </label>
-        </div>
-        <!-- Enter the permit number for the event -->
-        <div class="row input-group" id="permit_number_div" style="display: none;">
-            <span class="input-group-addon">Permit Number</span>
-            <input type="text" class="form-control form-group" id="permit_number_textbox"
-                placeholder="Enter Permit Number">
-        </div>
-        <div class="row input-group" id="permit_dept_div" style="display: none;">
-            <span class="input-group-addon">Issuing Dept</span>
-            <input type="text" class="form-control form-group" id="permit_dept_textbox"
-                placeholder="Enter Issuing Department">
-        </div>
-        <div class="row input-group date" id='permit_date_div' style="display: none;">
-            <span class="input-group-addon">Date Issued</span>
-            <input type="text" class="input-group date form-control" id="sandbox-container">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar">
-                </span>
-            </span>
-        </div>
+        <!--<div>-->
+            <!--Has a permit been issued for this event?-->
+            <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="eventRadio" id="eventRadioYes" onchange="eventRadioClickYes()">Yes-->
+            <!--</label>-->
+            <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="eventRadio" id="eventRadioNo"  onchange="eventRadioClickNo()">No-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; Enter the permit number for the event &ndash;&gt;-->
+        <!--<div class="row input-group" id="permit_number_div" style="display: none;">-->
+            <!--<span class="input-group-addon">Permit Number</span>-->
+            <!--<input type="text" class="form-control form-group" id="permit_number_textbox"-->
+                <!--placeholder="Enter Permit Number">-->
+        <!--</div>-->
+        <!--<div class="row input-group" id="permit_dept_div" style="display: none;">-->
+            <!--<span class="input-group-addon">Issuing Dept</span>-->
+            <!--<input type="text" class="form-control form-group" id="permit_dept_textbox"-->
+                <!--placeholder="Enter Issuing Department">-->
+        <!--</div>-->
+        <!--<div class="row input-group date" id='permit_date_div' style="display: none;">-->
+            <!--<span class="input-group-addon">Date Issued</span>-->
+            <!--<input type="text" class="input-group date form-control" id="sandbox-container">-->
+            <!--<span class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-calendar">-->
+                <!--</span>-->
+            <!--</span>-->
+        <!--</div>-->
 
-        <!-- No permit so require a Sponsor name and a description of the event -->
-        <div class="row input-group" id="permit_sponsor_div" style="display: none;">
-            <span class="input-group-addon">Sponsor Name</span>
-            <input type="text" class="form-control form-group" id="permit_sponsor_textbox"
-                placeholder="Enter Sponsor Name">
-        </div>
-        <div class="row input-group" id="permit_description_div" style="display: none;">
-            <span class="input-group-addon">Event Description</span>
-            <input type="text" class="form-control form-group" id="permit_description_textbox"
-                placeholder="Enter Description of Event">
-        </div>
+        <!--&lt;!&ndash; No permit so require a Sponsor name and a description of the event &ndash;&gt;-->
+        <!--<div class="row input-group" id="permit_sponsor_div" style="display: none;">-->
+            <!--<span class="input-group-addon">Sponsor Name</span>-->
+            <!--<input type="text" class="form-control form-group" id="permit_sponsor_textbox"-->
+                <!--placeholder="Enter Sponsor Name">-->
+        <!--</div>-->
+        <!--<div class="row input-group" id="permit_description_div" style="display: none;">-->
+            <!--<span class="input-group-addon">Event Description</span>-->
+            <!--<input type="text" class="form-control form-group" id="permit_description_textbox"-->
+                <!--placeholder="Enter Description of Event">-->
+        <!--</div>-->
 
-        <!-- End area for entering either a Permit number or a Sponsors name -->
+        <!--&lt;!&ndash; End area for entering either a Permit number or a Sponsors name &ndash;&gt;-->
 
-        <div class="row input-group date" id='event_start_time_id'>
-            <span class="input-group-addon">Event Start Time</span>
-            <input type='text' class="form-control form-group"/>
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar">
-                </span>
-            </span>
-        </div>
-        <div class="row input-group date" id='event_end_time_id'>
-            <span class="input-group-addon">Event End Time</span>
-            <input type='text' class="form-control form-group"/>
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar">
-                </span>
-            </span>
-        </div>
-        <div class="row input-group" id="event_location_div">
-            <span class="input-group-addon">Event Location</span>
-            <input type="text" class="form-control form-group" id="event_location_textbox">
-        </div>
+        <!--<div class="row input-group date" id='event_start_time_id'>-->
+            <!--<span class="input-group-addon">Event Start Time</span>-->
+            <!--<input type='text' class="form-control form-group"/>-->
+            <!--<span class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-calendar">-->
+                <!--</span>-->
+            <!--</span>-->
+        <!--</div>-->
+        <!--<div class="row input-group date" id='event_end_time_id'>-->
+            <!--<span class="input-group-addon">Event End Time</span>-->
+            <!--<input type='text' class="form-control form-group"/>-->
+            <!--<span class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-calendar">-->
+                <!--</span>-->
+            <!--</span>-->
+        <!--</div>-->
+        <!--<div class="row input-group" id="event_location_div">-->
+            <!--<span class="input-group-addon">Event Location</span>-->
+            <!--<input type="text" class="form-control form-group" id="event_location_textbox">-->
+        <!--</div>-->
 
-        <div class="row input-group" id="company_name_div">
-            <span class="input-group-addon">Company Name</span>
-            <input type="text" class="form-control form-group" id="company_name_textbox">
-        </div>
+        <!--<div class="row input-group" id="company_name_div">-->
+            <!--<span class="input-group-addon">Company Name</span>-->
+            <!--<input type="text" class="form-control form-group" id="company_name_textbox">-->
+        <!--</div>-->
 
-        <div class="row input-group" id="photographer_name_div">
-            <span class="input-group-addon">Photographer's Name</span>
-            <input type="text" class="form-control form-group" id="photographer_name_textbox">
-        </div>
+        <!--<div class="row input-group" id="photographer_name_div">-->
+            <!--<span class="input-group-addon">Photographer's Name</span>-->
+            <!--<input type="text" class="form-control form-group" id="photographer_name_textbox">-->
+        <!--</div>-->
 
 
+
+        <!--<div class="row">-->
+
+            <!--<div class="input-group col-md-8" id="business_license_div">-->
+                <!--<span class="input-group-addon">Business License Number</span>-->
+                <!--<input type="text" class="form-control form-group" id="business_license_textbox">-->
+            <!--</div>-->
+
+            <!--<div class="input-group col-md-4" id="business_license_city_div">-->
+                <!--<span class="input-group-addon">Issuing City</span>-->
+                <!--<input type="text" class="form-control form-group" id="business_license_city_textbox">-->
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--<br>-->
+        <!--<br>-->
 
         <div class="row">
+            <h4>Create permit for {{ user }}.</h4>
 
-            <div class="input-group col-md-8" id="business_license_div">
-                <span class="input-group-addon">Business License Number</span>
-                <input type="text" class="form-control form-group" id="business_license_textbox">
+            <div class="input-group col-md-4" id="name_div">
+                <span class="input-group-addon">Name</span>
+                <input type="text" class="form-control form-group" id="name" name="name">
             </div>
 
-            <div class="input-group col-md-4" id="business_license_city_div">
-                <span class="input-group-addon">Issuing City</span>
-                <input type="text" class="form-control form-group" id="business_license_city_textbox">
+            <div class="input-group col-md-4" id="geolocation">
+                <span class="input-group-addon">Lat</span>
+                <input type="text" class="form-control" id="lat" name="lat">
+
+                <span class="input-group-addon">Lon</span>
+                <input type="text" class="form-control" id="lon" name="lon">
             </div>
-
-        </div>
-
-        <p></p>
-        <p></p>
-        <div class="row">
-            <div class="input-group col-md-4" id="city">
-                <select name="zone_city" multiple size="4">
-                    <option value="atherton">Atherton</option>
-                    <option value="menlo_park">Menlo Park</option>
-                    <option value="santa_clara">Santa Clara</option>
-                    <option value="san_jose">San Jose</option>
+            <div class="input-group col-md-4" id="cost_div">
+                <span class="input-group-addon">Cost</span>
+                <input type="text" class="form-control form-group" id="cost" name="cost">
+            </div>
+            <div class="input-group col-md-4" id="city_div">
+                <span class="input-group-addon">City</span>
+                <input type="text" class="form-control form-group" id="city" name="city">
+            </div>
+            <div class="input-group col-md-4">
+                <span class="input-group-addon">Start Date</span>
+                <input type="text" class="input-group date form-control" id="start_date" name="start_date" >
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <div class="input-group col-md-4">
+                <span class="input-group-addon">End Date</span>
+                <input type="text" class="input-group date form-control" id="end_date" name="end_date" >
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <div class="input-group col-md-4">
+                <label for="type">Type</label>
+                <select class="form-control" name="type" id="type">
+                    {% for t in type %}
+                    <option value="{{t}}">{{t}}</option>
+                    {% endfor %}
                 </select>
             </div>
-            <div class="input-group col-md-4" id="name">
-                <span class="input-group-addon">Location name</span>
-                <input type="text" class="form-control form-group" id="zone_name">
-            </div>
+            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
         </div>
-
-
-
-
-        <!--
-please complete account registration
-photographer's business license # and city issuing (if any)
-photographer's professional insurance carrier and policy limits
-level of pilot's training or licensing details
-size and make/model of drone(s) to be used
-if more than one drone to be used, please list all
-this municipality requires aewaze to have one of its faa approved operators review the application
-you will be hearing from aerwaze within 1 business day regarding the status of your application and fees due
-please acknowledge that you have reviewed the rules on overhead photography for this city by clicking here -->
-
-        <!-- Start area date time location -->
-
-
-
-
-        <button type="submit" class="btn btn-default">Submit</button>
-
     </form>
 
 </div>
